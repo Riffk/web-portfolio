@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 
@@ -8,7 +8,6 @@ const projectDetails = {
     title: 'AMCS (Automated Monitoring & Control System)',
     description: 'An IoT system to monitor and control temperature and humidity using ESP32 and MQTT.',
     media: [
-      // Prepend process.env.PUBLIC_URL to all static asset paths
       { type: 'image', src: process.env.PUBLIC_URL + '/Fotobrin.jpg' }
     ],
     paragraphs: [
@@ -21,7 +20,6 @@ const projectDetails = {
     title: 'Car Robotic Obstacle Avoidance',
     description: 'An Arduino-based autonomous car that avoids obstacles using ultrasonic sensors.',
     media: [
-      // Prepend process.env.PUBLIC_URL
       { type: 'image', src: process.env.PUBLIC_URL + '/Robot.jpg' },
       { type: 'video', src: process.env.PUBLIC_URL + '/Carperfect.mp4' }
     ],
@@ -33,7 +31,6 @@ const projectDetails = {
     title: 'CRUD Showroom Car Seller App (Java NetBeans)',
     description: 'A desktop-based CRUD application built using Java NetBeans to manage car listings, including input for model number, brand, engine type, year, quantity, and price.',
     media: [
-      // Prepend process.env.PUBLIC_URL, even for nested folders in public
       { type: 'image', src: process.env.PUBLIC_URL + '/Crud1.jpg' },
       { type: 'image', src: process.env.PUBLIC_URL + '/Crud2.jpg' }
     ],
@@ -45,6 +42,7 @@ const projectDetails = {
 
 export default function ProjectDetail() {
   const { id } = useParams();
+  const navigate = useNavigate();
   const project = projectDetails[id];
   const [current, setCurrent] = useState(0);
 
@@ -53,6 +51,10 @@ export default function ProjectDetail() {
   const nextSlide = () => setCurrent((prev) => (prev + 1) % project.media.length);
   const prevSlide = () => setCurrent((prev) => (prev - 1 + project.media.length) % project.media.length);
 
+  const handleNavClick = (section) => {
+    navigate(`/#${section.toLowerCase()}`);
+  };
+
   return (
     <section className="min-h-screen bg-black text-white pt-28 pb-16 px-6">
       {/* Glass Navbar */}
@@ -60,14 +62,14 @@ export default function ProjectDetail() {
         <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
           <Link to="/" className="text-white text-2xl font-bold tracking-wide">PROTOFILO.</Link>
           <nav className="hidden md:flex space-x-6 text-sm font-semibold tracking-wide">
-            {['Home', 'About', 'Skills', 'Works', 'Contact'].map((item) => (
-              <a
+            {['Home', 'Skills', 'Works', 'Contact'].map((item) => (
+              <button
                 key={item}
-                href={`/#${item.toLowerCase()}`}
+                onClick={() => handleNavClick(item)}
                 className="text-white hover:text-yellow-400 transition-colors duration-300"
               >
                 {item.toUpperCase()}
-              </a>
+              </button>
             ))}
           </nav>
         </div>
