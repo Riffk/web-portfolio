@@ -150,7 +150,7 @@ export function Home() {
         <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
           <div className="text-white text-2xl font-bold tracking-wide">HUTAGALUNG .</div>
           <nav className="hidden md:flex space-x-6 text-sm font-semibold tracking-wide">
-            {['home', 'skills', 'works', 'contact'].map((item) => (
+            {['home', 'skills', 'portfolio', 'contact'].map((item) => (
               <a
                 key={item}
                 href={`#${item}`}
@@ -249,7 +249,7 @@ export function Home() {
       {/* Skills Section */}
       <motion.div id="skills" className="relative z-10 pt-24 pb-32 max-w-7xl mx-auto px-4 min-h-screen" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ duration: 1 }}>
         <h2 className="text-4xl font-bold mb-12 text-center text-white relative">
-          My Expertise
+          My Skills
           <span className="block w-24 h-1 bg-yellow-400 mx-auto mt-4 rounded-full"></span>
         </h2>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
@@ -299,7 +299,7 @@ export function Home() {
       </motion.div>
 
       {/* Works Section */}
-      <motion.div id="works" className="relative z-10 pt-24 pb-32 max-w-7xl mx-auto px-4 min-h-screen" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ duration: 1 }}>
+      <motion.div id="portfolio" className="relative z-10 pt-24 pb-32 max-w-7xl mx-auto px-4 min-h-screen" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ duration: 1 }}>
         <h2 className="text-4xl font-bold mb-12 text-center text-white relative">
           My Portfolio
           <span className="block w-24 h-1 bg-yellow-400 mx-auto mt-4 rounded-full"></span>

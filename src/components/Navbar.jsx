@@ -72,8 +72,8 @@ export function Navbar({ activeSection }) { // NEW: Accept activeSection prop
           </Link>
         </li>
         <li>
-          <Link smooth to={getLinkTo('works')}
-            className={getLinkClass('works')}
+          <Link smooth to={getLinkTo('portfolio')}
+            className={getLinkClass('portfolio')}
           >
             Portfolio
           </Link>

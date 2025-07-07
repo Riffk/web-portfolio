@@ -1,23 +1,25 @@
 // src/App.js
-import React, { useState } from 'react'; // ADD useState here
-import { Home } from './components/Home';
+import React, { useState } from 'react';
 import { Navbar } from './components/Navbar';
+import { Home } from './components/Home';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import ProjectDetail from './components/ProjectDetail';
 
 function App() {
-  // FIX 1: Set the basename to match your project folder/deployment path
-  const basename = "/my-portfolio";
+  // IMPORTANT: For Netlify root deployment, you MUST remove the 'basename' prop
+  // from <Router> and also remove 'homepage' from package.json.
+  // The line below should be REMOVED or COMMENTED OUT for Netlify.
+  // const basename = "/my-portfolio"; // DELETE OR COMMENT THIS LINE FOR NETLIFY
 
-  // State for active section, passed to Navbar and Home
   const [activeSection, setActiveSection] = useState('home');
 
   return (
-    <Router basename={basename}> {/* FIX 1: Add basename here */}
-      {/* FIX 3: Pass activeSection to Navbar */}
+    // If you are deploying to the root of your Netlify URL,
+    // the 'basename' prop should NOT be here.
+    // It should simply be <Router>
+    <Router>
       <Navbar activeSection={activeSection} />
       <Routes>
-        {/* FIX 3: Pass setActiveSection to Home */}
         <Route path="/" element={<Home setActiveSection={setActiveSection} />} />
         <Route path="/project/:id" element={<ProjectDetail />} />
       </Routes>
